@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Number of YouTubers Over Years",
+  "width": 700,
+  "height": 550,
+  "data": {"url": "https://raw.githubusercontent.com/hngg0023/3179-HW3/main/Global_YouTube_Statistics.csv"},
+  "params": [
+    {
+      "name": "Year_Selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+        "labels": ["Show All", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+        "name": "Year"
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "Year_Selection == null && (datum.created_year != '1970' && datum.created_year != 'nan') || (datum.created_year == Year_Selection && datum.channel_type != 'nan')"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "point": true
+      },
+      "encoding": {
+        "x": {"field": "created_year", "type": "ordinal", "title": "Year"},
+        "y": {"aggregate": "count", "field": "Youtuber", "type": "quantitative", "title": "Number of YouTubers"},
+        "tooltip": [{"aggregate": "count", "field": "Youtuber", "type": "ordinal", "title": "Number of YouTubers:"}]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "Year_Selection != null"
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "x": {"field": "created_year", "type": "ordinal"},
+        "y": {"aggregate": "count", "field": "Youtuber", "type": "quantitative"},
+        "color": {
+          "condition": {
+            "param": "Year_Selection",
+            "field": "channel_type",
+            "type": "nominal",
+            "title": "Channel Type"
+          },
+          "field": "channel_type",
+          "title": {"expr": "Year_Selection != null ? 'Channel Type' : ''"}
+        },
+        "tooltip": [
+          {"field": "channel_type", "title": "Channel:"},
+          {"aggregate": "count", "field": "Youtuber", "type": "ordinal", "title": "Number of YouTubers:"}
+        ]
+      }},
+      {
+      "transform": [
+        {
+          "filter": "Year_Selection != null"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "dx": 3
+      },
+      "encoding": {
+        "x": {"field": "created_year", "type": "ordinal"},
+        "y": {"aggregate": "count", "field": "Youtuber", "type": "quantitative", "stack": "zero"},
+        "text": {"field": "channel_type", "type": "nominal"},
+        "color": {
+          "value": "white"
+        }
+      }
+    }
+  ]
+}

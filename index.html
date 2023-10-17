@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+  
+</head>
+<body>
+  <div id="container">
+
+    <div class="title">
+      Global YouTube Statistics
+      <img src="https://raw.githubusercontent.com/hngg0023/3179-HW3/main/Youtube_logo.png">
+    </div> 
+
+    <div class="title">
+      <main>
+        As YouTube getting more famous nowadays, people can easily become a Youtuber and earn money from this platform. 
+        The main reason said by Moshin in 2023 is that <i><em> "People enjoy watching videos on Youtube everyday"</em></i>.
+        Thus, the views of each video will turns to an equivalent value of money for the content creator.
+        It is clearly shows on the Choropleth Map, for every 100 people in places like <mark>Canada</mark>, <mark>Australia</mark>,
+        <mark>Saudi Arabia</mark>, and <mark>Ukraine</mark>, the total video viewed have reached <b>10 Thousands</b> and above.
+      </main>
+    </div>
+
+    <div id="choropleth_map" class="graph"></div>
+    <script type="text/javascript">
+      var var1 = "GYS_Map.json";
+      vegaEmbed('#choropleth_map', var1).then(function(result) {}).catch(console.error);
+    </script>
+
+  <div class="title">
+    <main>
+      There are many types of channel in Youtube all around the world. However, in the Packed Bubble Chart below, it is categorizing
+      the channels into few big category like <mark>Entertainment</mark>, <mark>Music</mark>, <mark>People</mark>, <mark>Games</mark>, 
+      <mark>Education</mark>, and etcetera. The <b>size</b> of the bubble is showing the <ins><i>total video views for each channel</i></ins> 
+      and the <b>sequential colour</b> is representing the <ins><i>money earned by the content provider in each category.</i></ins>
+    </main>
+  </div>
+
+  <div id="bubble" class="graph"></div>
+
+      <script type="text/javascript">
+        var var5 = "GYS_PackedBubble.json";
+        vegaEmbed('#bubble', var5).then(function(result) {}).catch(console.error);
+      </script>
+
+  <div class="title">
+    <main>
+      Although Youtube is providing an easy platform for content provider to upload videos and attract viewers, there are too many competitor
+      in the same category. Therefore, less people chose not to be a content provider. As shown in the Bar Chart below, the Number of Youtuber
+      is <strong><b><ins>dropping</ins></b></strong> since <mark>2017</mark>. Furthermore, when a specific year is selected, the Number of 
+      Youtubers in each specific category will be shown. 
+    </main>
+  </div>
+
+  <div id="bar" class="graph"></div>
+
+    <script type="text/javascript">
+      var var2 = "GYS_Bar.json";
+      vegaEmbed('#bar', var2).then(function(result) {}).catch(console.error);
+    </script>
+
+  </div>
+
+  <div class="title">
+    <main>
+      As mentioned above, the Number of Youtuber is <strong><b><ins>dropping</ins></b></strong> and the scatter plot shows the actual cause. As shown on the 
+      right side scatter plot, content provider had once earned <mark>14 Million dollar</mark> monthly during the peak. However, due to the current economy, 
+      with the same number of views on their video, it is now possible for them to earn around <mark>850 Thousand dollar</mark> only. 
+    </main>
+  </div>
+
+  <div id="container" class="graph">
+
+    <div class="scatter-container">
+
+      <div id="scatter_1" class="scatter"></div>
+      <script type="text/javascript">
+        var var3 = "GYS_LowEarningScatter.json";
+        vegaEmbed('#scatter_1', var3).then(function(result) {}).catch(console.error);
+      </script>
+
+      <div id="scatter_2" class="scatter"></div>
+      <script type="text/javascript">
+        var var4 = "GYS_HighEarningScatter.json";
+        vegaEmbed('#scatter_2', var4).then(function(result) {}).catch(console.error);
+      </script>
+
+    </div>
+
+  </div>
+
+  <div id="container">
+  <div class="title">
+    <last>
+      <b>This visualisation is done by Hsien Yi Ng - 32436017</b>
+    </last>
+  </div>
+</div>
+  
+
+

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Highest Earnings for Youtubers Montly",
+  "width": 400, 
+  "height": 400,
+  "data": {"url": "https://raw.githubusercontent.com/hngg0023/3179-HW3/main/Global_YouTube_Statistics.csv"},
+  "transform": [
+    {
+      "calculate": "datum.video_views_for_the_last_30_days / 1000000000",
+      "as": "video_views_in_billion"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "y": {"field": "highest_monthly_earnings", "type": "quantitative", "title": "$ Earned", "axis": {"format": ".2s"}},
+        "x": {"field": "video_views_in_billion", "type": "quantitative", "title": "Video Viewed Monthly (Billion)"},
+        "tooltip":
+          [
+            {"field":"highest_monthly_earnings","type":"quantitative", "title": "$ Earned", "format":".2s"},
+            {"field":"video_views_in_billion","type":"quantitative", "title": "Video Views (Billion)", "format":".2s"}
+          ]
+      }
+    },
+    {
+      "mark": {"type": "line", "color":"red"},
+      "transform": [
+        {
+          "filter": "datum.highest_monthly_earnings > 0"
+        }
+      ],
+      "encoding": {
+        "y": {"field": "highest_monthly_earnings", "type": "quantitative", "title": "$ Earned"},
+        "x": {"field": "video_views_in_billion", "type": "quantitative", "title": "Video Viewed Monthly (Billion)", "axis": {"format": ".2~B"}}
+      }
+    }
+  ]
+}
